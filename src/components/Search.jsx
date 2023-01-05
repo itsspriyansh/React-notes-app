@@ -7,25 +7,19 @@ function Search ({searchHandler, searchState}) {
 
     function changeHandler (e) {
         setSearchText (e.target.value)
-    }
-
-    function searchClickHandler () {
-        searchHandler(searchText)
-        if (searchText === "") {
+        if (e.target.value === "") {
             searchState(false)
         } else {
             searchState(true)
+            searchHandler(searchText)
         }
     }
 
     return (
-        <>
         <input 
             placeholder="Search..." 
             onChange={changeHandler}
         />
-        <button onClick={searchClickHandler}>search</button>
-        </>
     )
 }
 
