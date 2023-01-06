@@ -54,14 +54,18 @@ function App() {
   const Body = document.body
   const darkModeButton = document.getElementById("darkModeButton")
   useEffect (() => {
+    darkModeStyler()
+  }, [darkMode])
+  
+  async function darkModeStyler() {
     if (darkMode) {
       Body.style.background = "#2e2d2c"
       darkModeButton.innerText = "Light Mode"
     } else {
       Body.style.background = "white"    
-      darkModeButton.innerText = "Dark Mode"
-    }
-  }, [darkMode])
+      darkModeButton.innerText = await "Dark Mode"
+    }   
+  }  
   // </Dark Mode>  
 
   function deleteHandler (id) {
