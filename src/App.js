@@ -1,10 +1,14 @@
-import { useState } from "react";
+import "./App.css"
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid"
 import NotesList from "./components/NotesList";
 import Search from "./components/Search";
+import Header from "./components/Header";
 
 function App() {
 
+  const LOCAL_KEY = "react-notes-app-data"
+  const [darkMode, setDarkMode] = useState (true)
   const [searching, setSearching] = useState (false)
   const [searchItem, setSearchItem] = useState ({})
   const [item, setItem] = useState ([
@@ -30,6 +34,21 @@ function App() {
     }
   ])
 
+  useEffect (() => {
+    const savedNotes = JSON.parse (
+      localStorage.getItem(LOCAL_KEY)
+    )
+    if (savedNotes) {
+      setItem (savedNotes)
+    }
+  }, [])
+
+  useEffect (() => {
+    localStorage.setItem (
+      LOCAL_KEY,
+      JSON.stringify(item)
+    )
+  }, [item])
 
   function deleteHandler (id) {
     let newNotes = []
@@ -58,7 +77,6 @@ function App() {
     item.map (note => {
       if (note.text.includes(input)) {
         newNotes.push(note)
-        console.log (note)
       }
     })
     setSearchItem (newNotes)
@@ -68,10 +86,17 @@ function App() {
     setSearching(input)
   }
 
+
   return (
-    <div>
+    <div className={darkMode ? "darkMode" : null}>
+      <Header />
       <Search searchHandler={searchHandler} searchState={searchState} />
-      <NotesList notes={searching ? searchItem : item} saveChange={saveChange} deleteHandler={deleteHandler} />
+      <NotesList 
+        notes={searching ? searchItem : item} 
+        saveChange={saveChange} 
+        deleteHandler={deleteHandler} 
+        searching={searching}
+      />
     </div>
   );
 }

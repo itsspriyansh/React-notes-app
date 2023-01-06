@@ -1,0 +1,26 @@
+.container {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: "poppins", sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    background: -webkit-linear-gradient(rgb(183, 81, 122), rgb(207, 161, 101));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container button {
+    height: 2rem;
+    width: auto;
+    margin-top: 1rem;
+    border-radius: 20px;
+    border: 2px solid rgb(133, 133, 133);
+    background: white;
+    font-family: "poppins", sans-serif;
+    font-weight: 200px;
+}
+

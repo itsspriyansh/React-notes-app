@@ -16,10 +16,13 @@ function Search ({searchHandler, searchState}) {
     }
 
     return (
+        <div className={classes.container}>
         <input 
+            className={classes.textField}
             placeholder="Search..." 
             onChange={changeHandler}
-        />
+            />
+        </div>
     )
 }
 
