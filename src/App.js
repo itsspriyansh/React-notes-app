@@ -50,6 +50,20 @@ function App() {
     )
   }, [item])
 
+  // <Dark Mode>
+  const Body = document.body
+  const darkModeButton = document.getElementById("darkModeButton")
+  useEffect (() => {
+    if (darkMode) {
+      Body.style.background = "#2e2d2c"
+      darkModeButton.innerText = "Light Mode"
+    } else {
+      Body.style.background = "white"    
+      darkModeButton.innerText = "Dark Mode"
+    }
+  }, [darkMode])
+  // </Dark Mode>  
+
   function deleteHandler (id) {
     let newNotes = []
     item.map (note => {
@@ -89,7 +103,7 @@ function App() {
 
   return (
     <div className={darkMode ? "darkMode" : null}>
-      <Header />
+      <Header toggleDarkMode={setDarkMode} />
       <Search searchHandler={searchHandler} searchState={searchState} />
       <NotesList 
         notes={searching ? searchItem : item} 
